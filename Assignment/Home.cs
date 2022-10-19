@@ -17,9 +17,9 @@ namespace Assignment
 
         [SetUp]
         public void startBrowser()
-        {
+        {            
             driver = new ChromeDriver();
-          
+        
         }
 
         [Test]
@@ -40,9 +40,9 @@ namespace Assignment
         [Test]
         public void TestCase1()
         {
-            /*select price 100 to 200----------
-                sort high to low----
-                validate sort and price in all pages
+            /*select price 100 to 200
+              sort high to low
+              validate sort and price in all pages
              */
             home();
             IWebElement lowprice = driver.FindElement(By.XPath("//*[@id=\"low-price\"]"));
@@ -83,11 +83,11 @@ namespace Assignment
         public void TestCase2()
         {
             /*
-             * select random item------
-                Add to cart-------
-                Go to cart------
-                proceed to checkout--
-                sign in-----
+             * select random item
+                Add to cart
+                Go to cart
+                proceed to checkout
+                sign in
              */
             home();
             IWebElement lowprice = driver.FindElement(By.XPath("//*[@id=\"low-price\"]"));
@@ -123,7 +123,15 @@ namespace Assignment
         [Test]
         public void TestCase3()
         {
-            TestCase2();
+            home();
+            IWebElement lowprice = driver.FindElement(By.XPath("//*[@id=\"low-price\"]"));
+            lowprice.Click();
+            lowprice.SendKeys("100");
+            IWebElement highprice = driver.FindElement(By.XPath("//*[@id=\"high-price\"]"));
+            highprice.Click();
+            highprice.SendKeys("200");
+            highprice.SendKeys(Keys.Enter);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             IWebElement selectitem = driver.FindElement(By.XPath("//*[@id=\"search\"]/div[1]/div[1]/div/span[3]/div[2]/div[2]/div/div/div/div/div/div[2]/div/div/div[1]/h2/a/span"));
             selectitem.Click();
             IWebElement deliverTo = driver.FindElement(By.XPath("//*[@id=\"contextualIngressPtLabel_deliveryShortLine\"]/span[1]"));
@@ -177,7 +185,7 @@ namespace Assignment
         [TearDown]
         public void closeBrowser()
         {
-           driver.Close();
+          // driver.Close();
         }
 
     }
